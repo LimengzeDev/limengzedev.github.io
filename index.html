@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<title>LimengzeCoder的主页</title>
+
+<script language ="javascript">
+
+   function editor (){
+
+var person=window. document.getElementByld("imagePerson")
+
+person.innerHTML="<input type =\"text\"id=\"fileimage\"/>"
+
+}
+
+function save(){
+
+var src=window.document.getElementByld("fileimage");
+
+window.document.getElementByld("img1").src=src.value+"";
+
+alert(window.document.getElementByld("img1").src);
+
+}
+
+</script>
+
+</head>
+
+<body style="background-color:#487775; align:center">
+
+<table align="center" style="background-color:#fff; width:70%; padding:10px">
+
+<tr>
+
+<td>
+
+<h1>我的主页</h1>
+
+<hr size=1>
+
+</td>
+
+</tr>
+
+</table>
+
+<table align="center" style="background-color:#fff; width:70%; padding:10px">
+
+<tr>
+
+<td align="center" style="width:40%">
+
+<a href="res/0.jpg"><img id="img1" src="0.jpg"width="70%"></a>
+
+</td>
+
+<td align="left" valign="top" style="width:60%"; valign:top>
+
+<h2>欢迎来到LimengzeCoder的主页</h2>
+
+<i>PS:点击“修改头像”可以修改头像哦（在弹出的输入框里输入文件的网址）！</i>
+
+<a href="myWorks.html">LimengzeCoder作品</a>
+
+</td>
+
+</tr>
+
+</table>
+
+<table align="center" style="background-color:#fff; width:70%; padding:10px">
+
+<tr>
+
+<td id="imagePerson">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<a style="text-decoration:none" herf="#" onClick="editor()">修改头像</a>
+
+<a style="text-decoration:none" herf="#" onClick="save()">保存</a>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
+
