@@ -12,11 +12,71 @@
 
 <body>
  <h1 style="color:red">暂时停止联盟一切活动</h1>
-<img src="/topic0515.jpg" alt="月主题">
- 
-<img src="/topic0516.jpg" alt="月主题">
- <video width="320" height="240" controls>
-  <source src="nggyu.mp4" type="video/mp4"></video>
+<div>
+		<label for="input-text">输入特定名称</label>
+		<input type="text" id="input-text">
+		<button onclick="addTextToLink()">查询结果</button>
+	</div>
+	<div>
+		<iframe id="iframe"></iframe>
+	</div>
+	<script>
+		function addTextToLink() {
+			var inputText = document.getElementById("input-text").value;
+			var url = "https://www.getnote.top/";
+			var link = document.createElement("a");
+			link.setAttribute("href", url + inputText);
+			link.setAttribute("target", "_blank");
+			link.innerHTML = url + inputText;
+
+			document.getElementById("iframe").innerHTML = "";
+			document.getElementById("iframe").appendChild(link);
+		}
+	</script>
+
+ <h1>图片转文字</h1>
+	<p>输入base 64或在下方选择图片以转换</p>
+	<div>
+		<textarea id="base64-input" placeholder="Enter your base64 code here" rows="6" cols="60"></textarea>
+		<br>
+		<button onclick="convertBase64ToImage()">Convert to Image</button>
+	</div>
+	<div>
+		<label for="image-input">or select an image file:</label>
+		<input type="file" id="image-input" onchange="convertImageToBase64()">
+		<br>
+		<p id="image-size"></p>
+		<img id="image-preview">
+		<br>
+		<textarea id="base64-output" placeholder="Image converted to base64 code will appear here" rows="6" cols="60"></textarea>
+	</div>
+	<script>
+		// Function to convert base64 code to image
+		function convertBase64ToImage() {
+			var base64Code = document.getElementById("base64-input").value;
+			var image = new Image();
+			image.src = "data:image/png;base64," + base64Code;
+			document.body.appendChild(image);
+		}
+		// Function to convert image to base64 code
+		function convertImageToBase64() {
+			var file = document.getElementById("image-input").files[0];
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var image = new Image();
+				image.onload = function() {
+					var width = this.width;
+					var height = this.height;
+					document.getElementById("image-size").innerHTML = "Image size: " + width + "x" + height + " pixels";
+				}
+				image.src = e.target.result;
+				document.getElementById("image-preview").src = e.target.result;
+				document.getElementById("base64-output").value = e.target.result.replace(/^data:image\/(png|jpg);base64,/, "");
+			}
+			reader.readAsDataURL(file);
+		}
+	</script>
+
 <iframe src=https://getnote.top/ssyl frameborder="0" width="500" height="500">
 
  <p>抱歉，亲爱的同志，您的浏览器不支持该功能。</p>
