@@ -12,7 +12,207 @@
 
 <body>
  <h1 style="color:red">暂时停止联盟一切活动</h1>
-<div>
+<h1>Base64 to Image 转换器  李孟泽编制</h1>
+	<p>输入your base64 code or select an 图片below:</p>
+	<div>
+		<textarea id="base64-input" placeholder="输入 your base64 code here" rows="6" cols="60"></textarea>
+		<br>
+		<div>
+			<button onclick="copyBase64Code()">拷贝文字</button>
+			<a id="download-link" download="image.png"><button>下载Image</button></a>
+		</div>
+		<br>
+		<button onclick="convertBase64ToImage()">转换 to Image</button>
+	</div>
+	<div>
+		<label for="image-input">or select an 图片:</label>
+		<input type="file" id="image-input" onchange="convertImageToBase64()">
+		<br>
+		<p id="image-size"></p>
+		<img id="image-preview">
+		<br>
+		<div>
+			<button onclick="copyBase64Code()">拷贝文字</button>
+			<a id="download-link-2" download="image.png"><button>下载 Image</button></a>
+		</div>
+		<br>
+		<textarea id="base64-output" placeholder="转换后的图片会出现在这里" rows="6" cols="60"></textarea>
+	</div>
+	<script>
+		// Function to convert base64 code to image
+		function convertBase64ToImage() {
+			var base64Code = document.getElementById("base64-input").value;
+			var image = new Image();
+			image.src = "data:image/png;base64," + base64Code;
+			document.body.appendChild(image);
+
+			var downloadLink = document.getElementById("download-link");
+			downloadLink.href = "data:image/png;base64," + base64Code;
+
+			var downloadLink2 = document.getElementById("download-link-2");
+			downloadLink2.href = "data:image/png;base64," + base64Code;
+		}
+
+		// Function to convert image to base64 code
+		function convertImageToBase64() {
+			var file = document.getElementById("image-input").files[0];
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var image = new Image();
+				image.onload = function() {
+					var width = this.width;
+					var height = this.height;
+					document.getElementById("image-size").innerHTML = "Image size: " + width + "x" + height + " pixels";
+				};
+				image.src = e.target.result;
+				document.getElementById("image-preview").src = e.target.result;
+				document.getElementById("base64-output").value = e.target.result.replace(/^data:image\/(png|jpg);base64,/, "");
+
+				var downloadLink = document.getElementById("download-link");
+				downloadLink.href = e.target.result;
+
+				var downloadLink2 = document.getElementById("download-link-2");
+				downloadLink2.href = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		}
+
+		// Function to copy base64 code to clipboard
+		function copyBase64Code() {
+			var base64Code = document.getElementById("base64-output");
+			base64Code.select();
+			document.execCommand("copy");
+			alert("The base64 code has been copied to your clipboard!");
+		}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+以下是一个简单的HTML代码片段，其中包含一个输入框和一个按钮。当用户在输入框中输入文字并点击按钮时，会将输入的文字添加到固定链接的末尾。然后，将链接的完整地址加载到一个嵌入的iframe中，并在页面上显示。
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>添加链接查询参数</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+    <script>
+        function appendTextToLink() {
+            // 获取用户输入的文字
+            var userInput = document.getElementById("userInput").value;
+            
+            // 定义固定链接
+            var fixedLink = "https://www.example.com";
+
+            // 将输入的文字添加到链接的末尾
+            var newLink = fixedLink + "?query=" + encodeURIComponent(userInput);
+
+            // 在iframe中加载新的链接
+            document.getElementById("myIframe").src = newLink;
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="userInput" placeholder="请输入文字">
+    <button onclick="appendTextToLink()">显示网站</button>
+    <br>
+    <iframe id="myIframe" src="" frameborder="0"></iframe>
+</body>
+
+</html>
+```
+
+在这个示例中，用户可以在文本框中输入任何文字，然后点击按钮将文字添加到链接的末尾。这个链接会被加载到嵌入的iframe中并显示在浏览器中。你可以根据自己的需要修改和扩展这个示例。
+
+
+
+
+
+
+
+
+
+
+
+以下是一个HTML代码片段，其中包含一个文本框、两个按钮以及两个链接。用户可以在文本框中输入文本或粘贴图片的URL地址，然后点击“转换为Base64”按钮将文本或图片转换为Base64编码，并在页面上显示。用户还可以点击“复制Base64”按钮将Base64编码复制到剪贴板，或者点击“下载图片”链接将Base64编码转换为图片并下载到本地。
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Base64和图片转换</title>
+    <style>
+        img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+    </style>
+    <script>
+        function textToBase64() {
+            var inputText = document.getElementById("inputText").value;
+            var base64Text = btoa(inputText);
+            document.getElementById("outputImage").src = "data:image/png;base64," + base64Text;
+            document.getElementById("base64Link").href = "data:text/plain;base64," + base64Text;
+        }
+
+        function copyBase64() {
+            var base64Text = document.getElementById("base64Output").innerText;
+          
+            // 创建一个辅助textarea元素
+            var tempTextArea = document.createElement("textarea");
+            tempTextArea.value = base64Text;
+            document.body.appendChild(tempTextArea);
+          
+            // 选择并复制剪贴板
+            tempTextArea.select();
+            document.execCommand("copy");
+          
+            // 清理辅助元素
+            document.body.removeChild(tempTextArea);
+        }
+    </script>
+</head>
+
+<body>
+    <textarea id="inputText" rows="10" cols="50" placeholder="输入文本或粘贴图片URL地址"></textarea>
+    <br>
+    <button onclick="textToBase64()">转换为Base64</button>
+    <br>
+    <img id="outputImage" src="">
+    <br>
+    <p id="base64Output"></p>
+    <button onclick="copyBase64()">复制Base64</button>
+    <a id="base64Link" href="#" download="image.png">下载图片</a>
+</body>
+
+</html>
+```
+
+在这个示例中，用户可以在文本框中输入任何文本或粘贴图片的URL地址。点击“转换为Base64”按钮后，文本或图片将被转换为Base64编码，并在页面上显示。转换后的Base64编码会显示在一个\<p>元素中，并且可以通过点击“复制Base64”按钮将其复制到剪贴板中。用户还可以通过点击“下载图片”链接将Base64编码转换为图片并将其下载到本地。
+
+请注意，该示例默认将转换的内容视为PNG图片，如果需要转换其他格式的图片，请相应地修改`data:image/png;base64,`部分的MIME类型。
+
+	<div>
 		<label for="input-text">输入特定名称</label>
 		<input type="text" id="input-text">
 		<button onclick="addTextToLink()">查询结果</button>
