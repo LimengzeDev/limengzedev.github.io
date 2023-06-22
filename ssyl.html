@@ -13,7 +13,8 @@
 <body>
  <h1 style="color:red">暂时停止联盟一切活动</h1>
 <h1>Base64 to Image 转换器  李孟泽编制</h1>
-	<iframe src=http://www.atoolbox.net/Tool.php?Id=1024></iframe>
+	Base 64转图片工具
+	<iframe src="https://www.atoolbox.net/Tool.php?Id=1024"></iframe>
 	<p>输入your base64 code or select an 图片below:</p>
 	<div>
 		<textarea id="base64-input" placeholder="输入 your base64 code here" rows="6" cols="60"></textarea>
@@ -87,8 +88,6 @@
 		}
 
 	</script>
-</body>
-</html>
 
 
 
@@ -98,16 +97,6 @@
 
 
 
-
-
-以下是一个简单的HTML代码片段，其中包含一个输入框和一个按钮。当用户在输入框中输入文字并点击按钮时，会将输入的文字添加到固定链接的末尾。然后，将链接的完整地址加载到一个嵌入的iframe中，并在页面上显示。
-
-```html
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>添加链接查询参数</title>
     <style>
         iframe {
             width: 100%;
@@ -121,11 +110,10 @@
             var userInput = document.getElementById("userInput").value;
             
             // 定义固定链接
-            var fixedLink = "https://www.example.com";
+            var fixedLink = "https://www.getnote.top/";
 
             // 将输入的文字添加到链接的末尾
-            var newLink = fixedLink + "?query=" + encodeURIComponent(userInput);
-
+            var newLink = fixedLink + encodeURIComponent(userInput);
             // 在iframe中加载新的链接
             document.getElementById("myIframe").src = newLink;
         }
@@ -134,13 +122,10 @@
 
 <body>
     <input type="text" id="userInput" placeholder="请输入文字">
-    <button onclick="appendTextToLink()">显示网站</button>
+    <button onclick="appendTextToLink()">显示查询结果</button>
     <br>
     <iframe id="myIframe" src="" frameborder="0"></iframe>
-</body>
 
-</html>
-```
 
 在这个示例中，用户可以在文本框中输入任何文字，然后点击按钮将文字添加到链接的末尾。这个链接会被加载到嵌入的iframe中并显示在浏览器中。你可以根据自己的需要修改和扩展这个示例。
 
