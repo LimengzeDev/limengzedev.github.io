@@ -1,104 +1,499 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李孟泽的个人网站</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --primary-color: #6200ee;
+            --primary-dark: #3700b3;
+            --primary-light: #bb86fc;
+            --secondary-color: #03dac6;
+            --background: #ffffff;
+            --surface: #ffffff;
+            --error: #b00020;
+            --on-primary: #ffffff;
+            --on-secondary: #000000;
+            --on-background: #000000;
+            --on-surface: #000000;
+            --on-error: #ffffff;
+        }
 
-<meta charset="utf-8">
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background);
+            color: var(--on-background);
+            line-height: 1.6;
+        }
 
-<title>LimengzeDev的博客</title>
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
 
-<script language ="javascript">
+        .app-bar-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-left: 16px;
+        }
 
-   function editor (){
+        .main-content {
+            margin-top: 80px;
+            padding: 24px;
+        }
 
-var person=window. document.getElementByld("imagePerson")
+        .card {
+            background-color: var(--surface);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: box-shadow 0.3s ease;
+        }
 
-person.innerHTML="<input type= \"text\"id=\"fileimage\"/>"
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
-}
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
 
-function save(){
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            height: 36px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            outline: none;
+        }
 
-var src=window.document.getElementByld("fileimage");
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+        }
 
-window.document.getElementByld("img1").src=src.value+"";
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
 
-alert(window.document.getElementByld("img1").src);
+        .btn-outlined {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
 
-}
+        .btn-outlined:hover {
+            background-color: rgba(98, 0, 238, 0.04);
+        }
 
-</script>
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            z-index: 100;
+        }
 
+        .fab:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            padding: 12px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .project-card {
+            margin-bottom: 24px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 16px;
+        }
+
+        .text-field {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .text-field input,
+        .text-field textarea {
+            width: 100%;
+            padding: 12px 16px 12px 0;
+            border: none;
+            border-bottom: 1px solid #757575;
+            font-size: 1rem;
+            background-color: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .text-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .text-field input:focus,
+        .text-field textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .text-field label {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            color: #757575;
+            transition: all 0.3s ease;
+        }
+
+        .text-field input:focus + label,
+        .text-field textarea:focus + label,
+        .text-field input:not(:placeholder-shown) + label,
+        .text-field textarea:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            padding: 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 600px) {
+            .app-bar {
+                height: 56px;
+            }
+            
+            .main-content {
+                margin-top: 72px;
+                padding: 16px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
 </head>
+<body>
+    <header class="app-bar">
+        <i class="material-icons">person</i>
+        <h1 class="app-bar-title">我的个人网站</h1>
+    </header>
 
-<body style="background-color:#487775; align:center">
+    <div class="main-content">
+        <div class="tabs">
+            <div class="tab active" data-tab="about">关于我</div>
+            <div class="tab" data-tab="skills">技能</div>
+            <div class="tab" data-tab="projects">项目</div>
+            <div class="tab" data-tab="contact">联系我</div>
+        </div>
 
-<table align="center" style="background-color:#fff; width:70%; padding:10px">
+        <div id="about" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">关于我</h2>
+                <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+                    <img src="res/0.jpg" alt="头像" style="border-radius: 50%;">
+                    <div>
+                        <h3 style="margin-top: 0;">李孟泽</h3>
+                        <p>前端开发工程师 | UI设计师</p>
+                        <p>我是一名热爱技术的开发者，专注于创建美观、易用的Web应用。拥有5年以上的前端开发经验，精通现代Web技术栈。</p>
+                    </div>
+                </div>
+            </div>
 
-<tr>
+            
 
-<td>
+        <div id="skills" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">技术技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">code</i>
+                        <h3>HTML/CSS</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">javascript</i>
+                        <h3>JavaScript</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">settings</i>
+                        <h3>Cordova</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">view_in_ar</i>
+                        <h3>Vue.js</h3>
+                        <p>熟练</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">android</i>
+                        <h3>Android和Kotlin</h3>
+                        <p>熟练</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">brush</i>
+                        <h3>UI设计</h3>
+                        <p>熟练</p>
+                    </div>
+                </div>
+            </div>
 
-<h1>我的主页</h1>
+            <div class="card">
+                <h2 class="card-title">语言能力</h2>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="margin-bottom: 8px;">中文</h3>
+                    <div style="height: 8px; background-color: #e0e0e0; border-radius: 4px;">
+                        <div style="width: 100%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 4px;">母语</p>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="margin-bottom: 8px;">英语</h3>
+                    <div style="height: 8px; background-color: #e0e0e0; border-radius: 4px;">
+                        <div style="width: 80%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 4px;">流利</p>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
 
-<hr size=1>
+        <div id="projects" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">我的项目</h2>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/800x400" alt="项目1" class="project-image">
+                    <div style="padding: 16px;">
+                        <h3 style="margin-top: 0;">PVZCosmic</h3>
+                        <p>用Python语言开发的宇宙版植物大战僵尸</p>
+                        <p><strong>技术栈:</strong> Python,Pygame</p>
+                        <a herf="https://github.com/LimengzeDev/PVZCosmic" class="btn btn-outlined">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/800x400" alt="集成一切" class="project-image">
+                    <div style="padding: 16px;">
+                        <h3 style="margin-top: 0;">集成许多功能的移动应用</h3>
+                        <p>通过PhoneGap与Cordova部署多平台</p>
+                        <p><strong>技术栈:</strong> PhoneGap,Cordova,Web</p>
+                        <button herf="https://github.com/LimengzeDev/Integrate-Everything" class="btn btn-outlined">查看详情</button>
+                    </div>
+                </div>
+                
+                
+                </div>
+            </div>
+        </div>
 
-</td>
+        <div id="contact" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">联系我</h2>
+                <p>请通过以下方式联系我。</p>
+                
+                <div class="contact-form">
+                    <div class="text-field">
+                        <input type="text" id="name" placeholder=" ">
+                        <label for="name">姓名</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <input type="email" id="email" placeholder=" ">
+                        <label for="email">邮箱</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <input type="text" id="subject" placeholder=" ">
+                        <label for="subject">主题</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <textarea id="message" placeholder=" "></textarea>
+                        <label for="message">消息</label>
+                    </div>
+                    
+                    <button class="btn btn-primary">发送消息</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</tr>
+    <button class="fab">
+        <i class="material-icons">email</i>
+    </button>
 
-</table>
+    <footer>
+        <p>© 2025 我的个人网站. 保留所有权利.</p>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="material-icons">link</i> GitHub</a>
+            <a href="#" class="social-link"><i class="material-icons">link</i> LinkedIn</a>
+            <a href="#" class="social-link"><i class="material-icons">link</i> Twitter</a>
+        </div>
+    </footer>
 
-<table align="center" style="background-color:#fff; width:70%; padding:10px">
-
-<tr>
-
-<td align="center" style="width:40%">
-
-<a href="res/0.jpg"><img id="img1" src="res/0.jpg"width="70%"></a>
-
-</td>
-
-<td align="left" valign="top" style="width:60%"; valign:top>
-
-<h2>欢迎来到李孟泽的博客</h2>
-
-<i>PS:点击“修改头像”可以修改头像哦（在弹出的输入框里输入文件的网址）！</i>
-
-<a href="myProjects.html">李孟泽的作品</a>
-
-</td>
-
-</tr>
-
-</table>
-
-<table align="center" style="background-color:#fff; width:70%; padding:10px">
-
-<tr>
-
-<td id="imagePerson">
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<a style="text-decoration:none" herf="#" onclick="editor()">修改头像</a>
-
-<a style="text-decoration:none" herf="#" onclick="save()">保存</a>
-
-</td>
-
-</tr>
-
-</table>
-
+    <script>
+        // 标签切换功能
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有标签的active类
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                // 添加当前标签的active类
+                tab.classList.add('active');
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // 显示当前标签对应的内容
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).style.display = 'block';
+            });
+        });
+        
+        // FAB按钮点击事件
+        document.querySelector('.fab').addEventListener('click', () => {
+            // 切换到联系我标签
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="contact"]').classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById('contact').style.display = 'block';
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // 表单提交
+        document.querySelector('.btn-primary').addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert('请填写所有字段');
+                return;
+            }
+            
+            // 这里可以添加实际的表单提交逻辑
+            alert('消息已发送！感谢您的联系。');
+            
+            // 清空表单
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+        });
+    </script>
 </body>
-
 </html>
-
