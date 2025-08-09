@@ -9,7 +9,7 @@
     <style>
         /* 在这里添加CSS样式 */
         :root {
-            --primary-color: #6200ee;
+            --primary-color: #00d2ff;
             --primary-dark: #3700b3;
             --primary-light: #bb86fc;
             --secondary-color: #03dac6;
@@ -113,7 +113,70 @@
         .btn-outlined:hover {
             background-color: rgba(98, 0, 238, 0.04);
         }
+        /* 波纹效果基础样式 */
+.ripple {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
 
+.ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* 为按钮添加波纹效果 */
+.btn, .fab, .tab {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.btn:after, .fab:after, .tab:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.btn:active:after, .fab:active:after, .tab:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* 移除默认的点击高亮 */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
         .fab {
             position: fixed;
             bottom: 24px;
@@ -331,18 +394,14 @@
                     <h3 style="margin-bottom: 8px;"></h3>
                     <p style="color: #757575; margin-top: 0;">2019年至今</p>
                     <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        
                     </ul>
                 </div>
                 <div>
                     <h3 style="margin-bottom: 8px;"></h3>
                     <p style="color: #757575; margin-top: 0;">2017-2019</p>
                     <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -421,7 +480,7 @@
                         <h3 style="margin-top: 0;">植物大战僵尸宇宙版</h3>
                         <p>用Python编写的宇宙版植物大战僵尸</p>
                         <p><strong>技术栈:</strong> Python</p>
-                        <button class="btn btn-outlined">查看详情</button>
+                        <a href="https://github.com/LimengzeDev/PVZCosmic" target="_blank" rel="noopener noreferrer" class="btn btn-outlined">查看详情</a>
                     </div>
                 </div>
                 
@@ -431,19 +490,11 @@
                         <h3 style="margin-top: 0;">集成许多功能的Cordova项目</h3>
                         <p></p>
                         <p><strong>技术栈:</strong> Cordova,Web</p>
-                        <button class="btn btn-outlined">查看详情</button>
+                        <a href="https://github.com/LimengzeDev/Integrate-Everything" target="_blank" rel="noopener noreferrer" class="btn btn-outlined">查看详情</a>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/800x400" alt="项目3" class="project-image">
-                    <div style="padding: 16px;">
-                        <h3 style="margin-top: 0;"></h3>
-                        <p></p>
-                        <p></p>
-                        <button class="btn btn-outlined"></button>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
