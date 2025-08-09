@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李孟泽的个人网站</title>
+    <title>我的个人网站 - Material Design</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        
+        /* 在这里添加CSS样式 */
         :root {
             --primary-color: #6200ee;
             --primary-dark: #3700b3;
@@ -105,6 +105,448 @@
         }
 
         .btn-outlined {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outlined:hover {
+            background-color: rgba(98, 0, 238, 0.04);
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            z-index: 100;
+        }
+
+        .fab:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            padding: 12px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .project-card {
+            margin-bottom: 24px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 16px;
+        }
+
+        .text-field {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .text-field input,
+        .text-field textarea {
+            width: 100%;
+            padding: 12px 16px 12px 0;
+            border: none;
+            border-bottom: 1px solid #757575;
+            font-size: 1rem;
+            background-color: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .text-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .text-field input:focus,
+        .text-field textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .text-field label {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            color: #757575;
+            transition: all 0.3s ease;
+        }
+
+        .text-field input:focus + label,
+        .text-field textarea:focus + label,
+        .text-field input:not(:placeholder-shown) + label,
+        .text-field textarea:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            padding: 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 600px) {
+            .app-bar {
+                height: 56px;
+            }
+            
+            .main-content {
+                margin-top: 72px;
+                padding: 16px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="app-bar">
+        <i class="material-icons">person</i>
+        <h1 class="app-bar-title">我的个人网站</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="tabs">
+            <div class="tab active" data-tab="about">关于我</div>
+            <div class="tab" data-tab="skills">技能</div>
+            <div class="tab" data-tab="projects">项目</div>
+            <div class="tab" data-tab="contact">联系我</div>
+        </div>
+
+        <div id="about" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">关于我</h2>
+                <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+                    <img src="https://via.placeholder.com/150" alt="头像" style="border-radius: 50%;">
+                    <div>
+                        <h3 style="margin-top: 0;">张三</h3>
+                        <p>前端开发工程师 | UI设计师</p>
+                        <p>我是一名热爱技术的开发者，专注于创建美观、易用的Web应用。拥有5年以上的前端开发经验，精通现代Web技术栈。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">教育背景</h2>
+                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                    <i class="material-icons">school</i>
+                    <div>
+                        <h3 style="margin-top: 0;">XX大学</h3>
+                        <p>计算机科学与技术 | 硕士 | 2015-2018</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 16px;">
+                    <i class="material-icons">school</i>
+                    <div>
+                        <h3 style="margin-top: 0;">XX大学</h3>
+                        <p>软件工程 | 学士 | 2011-2015</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">工作经历</h2>
+                <div style="margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 8px;">ABC科技有限公司 - 高级前端工程师</h3>
+                    <p style="color: #757575; margin-top: 0;">2019年至今</p>
+                    <ul>
+                        <li>负责公司核心产品的前端架构设计和开发</li>
+                        <li>带领3人前端团队，提高开发效率30%</li>
+                        <li>引入TypeScript和单元测试，减少生产环境bug</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 8px;">XYZ软件公司 - 前端开发工程师</h3>
+                    <p style="color: #757575; margin-top: 0;">2017-2019</p>
+                    <ul>
+                        <li>参与多个企业级Web应用开发</li>
+                        <li>优化页面性能，提升用户体验</li>
+                        <li>与设计团队紧密合作，实现设计稿</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="skills" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">技术技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">code</i>
+                        <h3>HTML/CSS</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">javascript</i>
+                        <h3>JavaScript</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">settings</i>
+                        <h3>React</h3>
+                        <p>精通</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">view_in_ar</i>
+                        <h3>Vue.js</h3>
+                        <p>熟练</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">api</i>
+                        <h3>Node.js</h3>
+                        <p>熟练</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="material-icons" style="font-size: 36px; color: var(--primary-color);">brush</i>
+                        <h3>UI设计</h3>
+                        <p>熟练</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">语言能力</h2>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="margin-bottom: 8px;">中文</h3>
+                    <div style="height: 8px; background-color: #e0e0e0; border-radius: 4px;">
+                        <div style="width: 100%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 4px;">母语</p>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="margin-bottom: 8px;">英语</h3>
+                    <div style="height: 8px; background-color: #e0e0e0; border-radius: 4px;">
+                        <div style="width: 80%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 4px;">流利</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 8px;">日语</h3>
+                    <div style="height: 8px; background-color: #e0e0e0; border-radius: 4px;">
+                        <div style="width: 60%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 4px;">日常交流</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">我的项目</h2>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/800x400" alt="项目1" class="project-image">
+                    <div style="padding: 16px;">
+                        <h3 style="margin-top: 0;">电子商务平台</h3>
+                        <p>一个完整的B2C电子商务解决方案，包含商品展示、购物车、支付和订单管理功能。</p>
+                        <p><strong>技术栈:</strong> React, Redux, Node.js, MongoDB</p>
+                        <button class="btn btn-outlined">查看详情</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/800x400" alt="项目2" class="project-image">
+                    <div style="padding: 16px;">
+                        <h3 style="margin-top: 0;">任务管理系统</h3>
+                        <p>团队协作任务管理工具，支持任务分配、进度跟踪和报表生成。</p>
+                        <p><strong>技术栈:</strong> Vue.js, Vuex, Firebase</p>
+                        <button class="btn btn-outlined">查看详情</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/800x400" alt="项目3" class="project-image">
+                    <div style="padding: 16px;">
+                        <h3 style="margin-top: 0;">个人博客系统</h3>
+                        <p>基于Markdown的个人博客系统，支持分类、标签和搜索功能。</p>
+                        <p><strong>技术栈:</strong> Next.js, TypeScript, Tailwind CSS</p>
+                        <button class="btn btn-outlined">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">联系我</h2>
+                <p>如果您有任何问题或合作意向，请随时通过以下方式联系我。</p>
+                
+                <div class="contact-form">
+                    <div class="text-field">
+                        <input type="text" id="name" placeholder=" ">
+                        <label for="name">姓名</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <input type="email" id="email" placeholder=" ">
+                        <label for="email">邮箱</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <input type="text" id="subject" placeholder=" ">
+                        <label for="subject">主题</label>
+                    </div>
+                    
+                    <div class="text-field">
+                        <textarea id="message" placeholder=" "></textarea>
+                        <label for="message">消息</label>
+                    </div>
+                    
+                    <button class="btn btn-primary">发送消息</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="fab">
+        <i class="material-icons">email</i>
+    </button>
+
+    <footer>
+        <p>© 2023 我的个人网站. 保留所有权利.</p>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="material-icons">link</i> GitHub</a>
+            <a href="#" class="social-link"><i class="material-icons">link</i> LinkedIn</a>
+            <a href="#" class="social-link"><i class="material-icons">link</i> Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        // 标签切换功能
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有标签的active类
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                // 添加当前标签的active类
+                tab.classList.add('active');
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // 显示当前标签对应的内容
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).style.display = 'block';
+            });
+        });
+        
+        // FAB按钮点击事件
+        document.querySelector('.fab').addEventListener('click', () => {
+            // 切换到联系我标签
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="contact"]').classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById('contact').style.display = 'block';
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // 表单提交
+        document.querySelector('.btn-primary').addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert('请填写所有字段');
+                return;
+            }
+            
+            // 这里可以添加实际的表单提交逻辑
+            alert('消息已发送！感谢您的联系。');
+            
+            // 清空表单
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+        });
+    </script>
+</body>
+</html>        .btn-outlined {
             background-color: transparent;
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
